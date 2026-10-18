@@ -1,0 +1,45 @@
+{
+  "provider": "openai",
+  "item": "03_usage",
+  "item_ko": "Token Usage",
+  "source": "live",
+  "note": "",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:18:00+00:00",
+  "payload": {
+    "usage": {
+      "input_tokens": 18,
+      "output_tokens": 17,
+      "total_tokens": 35,
+      "cached_input_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "total_is_computed": false,
+      "raw": {
+        "input_tokens": 18,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 17,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 35
+      }
+    },
+    "count_tokens_pre_call": 18,
+    "raw_usage": {
+      "input_tokens": 18,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 17,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 35
+    }
+  }
+}

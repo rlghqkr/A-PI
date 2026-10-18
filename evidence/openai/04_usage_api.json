@@ -1,0 +1,15 @@
+{
+  "provider": "openai",
+  "item": "04_usage_api",
+  "item_ko": "Usage 조회",
+  "source": "blocked",
+  "note": "no admin key",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:27:47+00:00",
+  "payload": {
+    "provider": "openai",
+    "item": "usage_report",
+    "reason": "OPENAI_ADMIN_KEY 없음 — GET /v1/organization/usage/completions 는 Admin API 키(조직 Owner 발급) 필수. 표준/프로젝트 키로는 불가",
+    "alternative": "platform.openai.com/usage 대시보드 또는 apicompare.usagelog.aggregate()"
+  }
+}

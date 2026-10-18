@@ -1,0 +1,47 @@
+{
+  "provider": "gemini",
+  "item": "05_costs",
+  "item_ko": "비용 확인",
+  "source": "blocked",
+  "note": "no key",
+  "model": "gemini-3.8-flash",
+  "saved_at": "2026-10-18T16:23:37+00:00",
+  "payload": {
+    "error": {
+      "category": "AUTH",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "GEMINI_API_KEY 가 설정되지 않았습니다 (.env 확인). 키 없이 실행 → 이 항목은 [BLOCKED: no key].",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": null
+    },
+    "price_table_entry": {
+      "provider": "gemini",
+      "model": "gemini-3.8-flash",
+      "input": 0.75,
+      "output": 3.75,
+      "cached_input": null,
+      "cache_write_5m": null,
+      "cache_write_multiplier": 1.0,
+      "as_of": "2026-10-16",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "note": "Free tier 제공. 2027-01-01 부터 $1.50/$7.50",
+      "long_context": null,
+      "scheduled_changes": [
+        {
+          "effective_from": "2027-01-01",
+          "input": 1.5,
+          "output": 7.5
+        }
+      ]
+    },
+    "cost_report": {
+      "provider": "gemini",
+      "item": "cost_report",
+      "reason": "Gemini API 에는 비용 조회 엔드포인트가 없음. 실비는 Paid tier 에서만 Cloud Billing 리포트/BigQuery export(결제계정 권한, 최대 24h 지연) 로 확인. Free tier 는 $0, Prepay 잔액은 AI Studio 에서만 확인",
+      "alternative": "cost() 로컬 계산(pricing.PRICE_TABLE, 2027-01-01 인상 예고 반영) · Cloud Billing 리포트 'Service = Gemini API, Group by SKU' · BigQuery billing export"
+    }
+  }
+}

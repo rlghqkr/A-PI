@@ -1,0 +1,277 @@
+# A-PI 사전조사 매트릭스 — Anthropic Claude (7개 항목). 근거: 공식 문서 교차 검증(2026-10-18) + SDK 1.15.0 로컬 확인.
+#   검증: uv run python -c "import yaml,json,jsonschema;d=yaml.safe_load(open('matrix/_parts/anthropic.yaml'));jsonschema.validate(d,json.load(open('matrix/matrix_entry.schema.json')));print(len(d['entries']))"
+#   키가 없어 evidence 는 전부 docs. usage_report / cost 는 조직(Organization) + Admin 키가 필요해 blocked.
+author: kimbong
+as_of: "2026-10-19"
+entries:
+  - provider: anthropic
+    item: models_list                # 모델 목록 조회
+    availability: api
+    endpoint: "GET https://api.anthropic.com/v1/models | GET /v1/models/{model_id} (headers: x-api-key, anthropic-version: 2023-06-01)"
+    auth: standard_key
+    sdk_call: "for m in client.models.list(): print(m.id, m.max_input_tokens, m.max_tokens, m.lifecycle)  # auto-paginates; client.models.retrieve('claude-opus-5-5')"
+    response_fields:
+      - data[].id
+      - data[].display_name
+      - data[].created_at
+      - data[].lifecycle
+      - data[].retires_at
+      - data[].line
+      - data[].max_input_tokens
+      - data[].max_tokens
+      - data[].capabilities
+      - has_more / first_id / last_id
+    common_fields:
+      - model_id
+      - display_name
+      - created_at
+      - context_window
+      - max_output_tokens
+      - http_status
+      - request_id
+    caveats: >-
+      무료·일반 키로 호출 가능하며 컨텍스트(max_input_tokens)·최대 출력(max_tokens)·capabilities(thinking/effort/image/pdf/structured_outputs 지원표)·lifecycle 까지 돌려주지만
+      가격 필드는 없다(단가표는 로컬 유지). 현행 모델 ID 는 날짜 접미사 없는 고정 스냅샷(claude-opus-5-5, claude-sonnet-5-5, claude-haiku-5-5, claude-fable-5-1)이고
+      4.5 이하만 claude-haiku-4-5-20251001 같은 날짜형 full id 가 따로 있다. capabilities 는 untyped dict 이므로 bracket 접근(m.capabilities["image_input"]["supported"]).
+      조직이 쓸 수 없는 모델은 목록에 없고 호출 시 존재하지 않는 모델과 같은 404 not_found_error 가 나며, lifecycle 미지정 시 active+deprecated 만 반환(retired 는 명시 요청).
+    evidence: docs
+    blocked_reason: ""
+    sources:
+      - https://platform.claude.com/docs/en/api/models/list.md
+      - https://platform.claude.com/docs/en/api/models/retrieve.md
+      - https://platform.claude.com/docs/en/about-claude/models/overview.md
+      - https://platform.claude.com/docs/en/api/overview.md
+    confidence: 0.95
+
+  - provider: anthropic
+    item: generate                # 모델 호출
+    availability: api
+    endpoint: "POST https://api.anthropic.com/v1/messages (stream: true 로 SSE; 배치 POST /v1/messages/batches; 사전 계산 POST /v1/messages/count_tokens)"
+    auth: standard_key
+    sdk_call: "msg = client.messages.create(model='claude-haiku-5-5', max_tokens=300, messages=[{'role': 'user', 'content': '...'}])"
+    response_fields:
+      - id
+      - model
+      - role
+      - content[].type / content[].text
+      - stop_reason
+      - stop_sequence
+      - stop_details
+      - usage.input_tokens
+      - usage.output_tokens
+      - _request_id
+    common_fields:
+      - model_id
+      - text
+      - finish_reason
+      - input_tokens
+      - output_tokens
+      - latency
+      - request_id
+      - http_status
+    caveats: >-
+      필수 바디는 model, max_tokens, messages 이며 content 는 단일 문자열이 아니라 블록 배열(text/thinking/tool_use ...)이므로 block.type == 'text' 를 걸러서 읽어야 한다.
+      현행 모델(Opus 5.5/Sonnet 5.5/Haiku 5.5/Fable 5.1)은 thinking 이 기본 ON(adaptive) 이고 temperature/top_p/top_k 는 SDK 1.x 에서 파라미터 자체가 제거돼 그냥 넘기면
+      클라이언트 TypeError, extra_body 로 넣어야 서버 400 을 본다(thinking: disabled, assistant prefill, tool_choice any/tool 도 400; Sonnet 5.5 는 between_tools, Haiku 5.5 는 disabled 허용).
+      stop_reason 에 refusal(안전 분류기)·model_context_window_exceeded 가 있어 Format 판정 전 처리가 필요하고, max_tokens > 21,333 인 비스트리밍 요청은 SDK 가 ValueError 로 거부하므로 긴 출력은 stream 필수.
+      첫 메시지 role 이 반드시 user 여야 하는지는 문서 간 상충(open question).
+    evidence: docs
+    blocked_reason: ""
+    sources:
+      - https://platform.claude.com/docs/en/api/messages/create.md
+      - https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md
+      - https://platform.claude.com/docs/en/get-started.md
+      - https://platform.claude.com/docs/en/build-with-claude/streaming.md
+    confidence: 0.97
+
+  - provider: anthropic
+    item: token_usage                # Token Usage
+    availability: partial
+    endpoint: "응답 내 usage 객체 (POST /v1/messages) | 사전 계산: POST https://api.anthropic.com/v1/messages/count_tokens"
+    auth: standard_key
+    sdk_call: "u = msg.usage; total_in = u.input_tokens + (u.cache_creation_input_tokens or 0) + (u.cache_read_input_tokens or 0); pre = client.messages.count_tokens(model=..., messages=...).input_tokens"
+    response_fields:
+      - usage.input_tokens
+      - usage.output_tokens
+      - usage.cache_creation_input_tokens
+      - usage.cache_read_input_tokens
+      - usage.cache_creation.ephemeral_5m_input_tokens
+      - usage.cache_creation.ephemeral_1h_input_tokens
+      - usage.output_tokens_details.thinking_tokens
+      - usage.service_tier
+      - usage.speed
+      - usage.inference_geo
+    common_fields:
+      - input_tokens
+      - output_tokens
+      - total_tokens(computed)
+      - cached_input_tokens
+      - cache_write_tokens
+      - reasoning_tokens
+    caveats: >-
+      total_tokens 필드가 없다(OpenAI 와 다름). input_tokens 는 '마지막 캐시 브레이크포인트 이후' 비캐시 입력만이라 캐시 히트 시 매우 작게 나오므로
+      total_input = input_tokens + cache_creation_input_tokens + cache_read_input_tokens, total = total_input + output_tokens 로 클라이언트가 계산한다(UsageNormalized.total_is_computed=True).
+      thinking 토큰은 output_tokens 에 이미 포함되어 output 단가로 과금되고(display: omitted 여도 동일) output_tokens_details.thinking_tokens 는 분해용 근사치이므로 더하지 말 것;
+      이 필드가 beta 헤더(thinking-token-count-2026-05-13) 없이 항상 채워지는지는 open question(검증자는 GA·Optional 로 판단). count_tokens 는 무료·별도 RPM 이지만 추정치이고 캐시 미적용,
+      서버 툴/url·file 이미지 포함 요청은 400. 4.7+ 토크나이저는 동일 텍스트에 약 30% 더 많은 토큰이라 Provider 간 토큰 비교는 비용($) 기준도 병기. 'partial' 인 이유: 응답 usage 는 API 지만 총합·비용은 로컬 계산.
+    evidence: docs
+    blocked_reason: ""
+    sources:
+      - https://platform.claude.com/docs/en/api/messages/create.md
+      - https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md
+      - https://platform.claude.com/docs/en/build-with-claude/token-counting.md
+      - https://platform.claude.com/docs/en/build-with-claude/thinking.md
+    confidence: 0.95
+
+  - provider: anthropic
+    item: usage_report                # Usage 조회
+    availability: api
+    endpoint: "GET https://api.anthropic.com/v1/organizations/usage_report/messages?starting_at=...&ending_at=...&bucket_width=1d&group_by[]=model (headers: x-api-key: $ANTHROPIC_ADMIN_KEY, anthropic-version: 2023-06-01)"
+    auth: admin_key
+    sdk_call: "httpx.get('https://api.anthropic.com/v1/organizations/usage_report/messages', params={...}, headers={'x-api-key': os.environ['ANTHROPIC_ADMIN_KEY'], 'anthropic-version': '2023-06-01'})  # SDK 메서드 없음, raw HTTP"
+    response_fields:
+      - data[].starting_at
+      - data[].ending_at
+      - data[].results[].uncached_input_tokens
+      - data[].results[].cache_creation.ephemeral_5m_input_tokens
+      - data[].results[].cache_read_input_tokens
+      - data[].results[].output_tokens
+      - data[].results[].model
+      - data[].results[].workspace_id
+      - data[].results[].api_key_id
+      - has_more / next_page
+    common_fields:
+      - bucket_start
+      - bucket_end
+      - model_id
+      - input_tokens
+      - output_tokens
+    caveats: >-
+      Admin API key(sk-ant…admin01…) 또는 org:admin OAuth 토큰, 또는 workspace 에 스코프되지 않은 personal/service account key 가 필요하고 조직(Organization) 계정이 전제라
+      학생 팀의 개인 Console 계정은 Settings > Organization 에서 조직을 만들고 admin 역할로 Admin 키를 발급해야 한다(일반 workspace 키는 401/403). Python SDK 1.15.0 에 이 엔드포인트의 메서드가 없어
+      raw HTTP(requests/httpx2/curl) 로 호출해야 하며, client.beta.organization.analytics.usage_report 는 Claude Enterprise Analytics API(/v1/organizations/analytics/*, 별도 Analytics 키)라 혼동 금지.
+      입력 토큰 필드명이 Messages 응답(input_tokens)과 달리 uncached_input_tokens 이고, 버킷은 1m 최대 1,440/1h 168/1d 31 개까지라 더 긴 기간은 page 커서로 반복, 데이터 지연 약 5분.
+      키가 없어도 usagelog.aggregate() 로 자체 집계는 가능.
+    evidence: blocked
+    blocked_reason: "org + admin key"
+    sources:
+      - https://platform.claude.com/docs/en/manage-claude/usage-cost-api.md
+      - https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages.md
+      - https://platform.claude.com/docs/en/manage-claude/admin-api.md
+      - https://platform.claude.com/docs/en/manage-claude/authentication.md
+    confidence: 0.95
+
+  - provider: anthropic
+    item: cost                # 비용 확인
+    availability: partial
+    endpoint: "GET https://api.anthropic.com/v1/organizations/cost_report?starting_at=...&ending_at=...&group_by[]=description (Admin key, 1d 버킷만) | 단가표: https://platform.claude.com/docs/en/about-claude/pricing (API 미제공)"
+    auth: admin_key
+    sdk_call: "cost_usd = (u.input_tokens*p_in + u.output_tokens*p_out + (u.cache_creation_input_tokens or 0)*p_cw + (u.cache_read_input_tokens or 0)*p_cr) / 1_000_000  # 로컬 계산; cost_report 는 raw HTTP"
+    response_fields:
+      - data[].results[].amount
+      - data[].results[].currency
+      - data[].results[].cost_type
+      - data[].results[].token_type
+      - data[].results[].model
+      - data[].results[].description
+      - data[].results[].service_tier
+      - data[].results[].context_window
+      - data[].results[].workspace_id
+      - has_more / next_page
+    common_fields:
+      - model_id
+      - cost_usd(computed)
+      - bucket_start
+      - bucket_end
+    caveats: >-
+      단가는 어떤 API 로도 노출되지 않아(Models API 에 가격 필드 없음) 호출 단위 '예상 비용' 은 usage 토큰 x 공식 단가표(pricing.PRICE_TABLE, as_of 2026-10-18) 로 로컬 계산만 가능하며 이는 키 없이도 된다.
+      사후 실비 조회 cost_report 는 Admin 키 + 조직 계정 + raw HTTP 이고 1d 버킷만 지원(시간별 비용은 usage_report 토큰 x 단가표로 근사), amount 는 센트 단위 decimal string 이라 Decimal 파싱 후 /100,
+      model/token_type 등은 group_by[]=description 을 줘야만 채워진다(아니면 null), 약 5분 지연, Priority Tier 비용 미포함. Haiku 5.5 는 캐시 포함 총 입력이 100K 를 넘으면 2단 단가(0.50/2.50)이고
+      캐시 읽기 배수는 모델별로 다르다(Opus 5.5·Sonnet 5.5 0.05x, Fable 5.1 0.025x, 그 외 0.1x). [uncertain] Max/Team 구독 크레딧 차감이 cost_report 에 반영되는지(총 사용액 vs 실제 청구액)는 문서상 불명확.
+    evidence: blocked
+    blocked_reason: "org + admin key"
+    sources:
+      - https://platform.claude.com/docs/en/about-claude/pricing.md
+      - https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve.md
+      - https://platform.claude.com/docs/en/manage-claude/usage-cost-api.md
+      - https://claude.com/pricing
+    confidence: 0.93
+
+  - provider: anthropic
+    item: status_errors                # 상태 및 오류 확인
+    availability: api
+    endpoint: "헬스체크: GET https://api.anthropic.com/v1/models (무료; Admin 키 검증 GET /v1/organizations/me) | 오류: 모든 엔드포인트의 HTTP status + body.error.type + 헤더(request-id, retry-after, anthropic-ratelimit-*)"
+    auth: standard_key
+    sdk_call: "try: raw = client.messages.with_raw_response.create(...) except anthropic.APIStatusError as e: (e.status_code, e.type, e.response.headers.get('retry-after'), e._request_id)"
+    response_fields:
+      - error.type
+      - error.message
+      - error.details.error_code
+      - request_id
+      - "header: request-id"
+      - "header: retry-after"
+      - "header: anthropic-ratelimit-requests-limit/-remaining/-reset"
+      - "header: anthropic-ratelimit-tokens-limit/-remaining/-reset"
+      - "header: anthropic-ratelimit-input-tokens-*"
+      - "header: anthropic-ratelimit-output-tokens-*"
+    common_fields:
+      - http_status
+      - provider_type
+      - provider_code
+      - message
+      - retry_after
+      - request_id
+      - latency
+    caveats: >-
+      전용 /health 는 없고 GET /v1/models(토큰 과금 0) 이 가장 저렴한 연결+인증 확인이며 장애 공지는 status.anthropic.com(공식 페이지로 재확인 못함). 과부하는 503 이 아니라 529 overloaded_error 이고
+      SDK 1.15.0 에서 anthropic.OverloadedError 는 InternalServerError 의 하위가 아닌 APIStatusError 직계 자식이라(로컬 MRO 확인) InternalServerError 만 잡으면 529 가 누락된다 -> APIStatusError 로 받아 status_code/type 으로 분기.
+      429 는 (a) 순간 rate limit(retry-after 있음) (b) 티어 월 지출 한도(details.error_code=enforced_spend_limit_reached, retry-after 없음) (c) acceleration limit (d) Claude Code workspace spend limit 네 경우를 공유하고,
+      사용자 설정 spend limit 은 429 가 아닌 400 invalid_request_error('...specified API usage limits'), 크레딧 소진은 'Your credit balance is too low...' 문구. 스트리밍 오류는 HTTP 200 뒤 SSE error 이벤트로 오고,
+      APIConnectionError 는 APIStatusError 의 형제(TypeScript 와 다름). SDK 기본 max_retries=2, timeout=600초(connect 5초) 이므로 latency 비교 시 max_retries=0 으로 통일.
+    evidence: docs
+    blocked_reason: ""
+    sources:
+      - https://platform.claude.com/docs/en/api/errors.md
+      - https://platform.claude.com/docs/en/api/rate-limits.md
+      - https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python.md
+      - https://platform.claude.com/docs/en/api/overview.md
+    confidence: 0.95
+
+  - provider: anthropic
+    item: example                # 호출 예제
+    availability: api
+    endpoint: "POST https://api.anthropic.com/v1/messages (headers: x-api-key, anthropic-version: 2023-06-01, content-type: application/json)"
+    auth: standard_key
+    sdk_call: "client = anthropic.Anthropic(); msg = client.messages.create(model='claude-haiku-5-5', max_tokens=300, messages=[{'role': 'user', 'content': '대한민국의 수도는?'}])"
+    response_fields:
+      - msg.id
+      - msg.model
+      - msg.content[i].type
+      - msg.content[i].text
+      - msg.stop_reason
+      - msg.usage.input_tokens
+      - msg.usage.output_tokens
+      - msg.usage.cache_creation_input_tokens
+      - msg.usage.output_tokens_details.thinking_tokens
+      - msg._request_id
+    common_fields:
+      - model_id
+      - text
+      - finish_reason
+      - input_tokens
+      - output_tokens
+      - latency
+      - request_id
+    caveats: >-
+      설치 pip install anthropic (Python 3.10+; 시스템 Python 3.9 에서는 0.125.0 구 SDK 가 설치되는 함정 -> 노트북 첫 셀에 버전 assert 권장), 키는 ANTHROPIC_API_KEY 환경변수로 SDK 가 자동 읽음.
+      예제 모델은 가장 저렴한 claude-haiku-5-5($0.10/$0.50 per MTok) 권장. 현행 모델은 thinking 기본 ON 이라 짧은 질문에도 output_tokens 가 커질 수 있어 비교 실험에서는 output_config={'effort': 'low'} 로 통제하고,
+      temperature 등 샘플링 파라미터는 공통 파라미터 세트에서 제외(SDK 1.x TypeError). 선불 크레딧 잔액이 있어야 하며 신규 가입 시 소액 무료 크레딧 지급은 공식 FAQ 에 명시(금액 미공개, CORRECTED).
+      Jupyter 에서는 AsyncAnthropic + await 를 그대로 사용 가능.
+    evidence: docs
+    blocked_reason: ""
+    sources:
+      - https://platform.claude.com/docs/en/get-started.md
+      - https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python.md
+      - https://platform.claude.com/docs/en/build-with-claude/working-with-messages.md
+      - https://platform.claude.com/docs/en/get-api-key.md
+    confidence: 0.97

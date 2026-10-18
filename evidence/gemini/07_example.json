@@ -1,0 +1,23 @@
+{
+  "provider": "gemini",
+  "item": "07_example",
+  "item_ko": "호출 예제",
+  "source": "blocked",
+  "note": "no key",
+  "model": "gemini-3.8-flash",
+  "saved_at": "2026-10-18T16:23:37+00:00",
+  "payload": {
+    "error": {
+      "category": "AUTH",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "GEMINI_API_KEY 가 설정되지 않았습니다 (.env 확인). 키 없이 실행 → 이 항목은 [BLOCKED: no key].",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": null
+    },
+    "curl_generate_content": "curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent\" \\\n  -H \"x-goog-api-key: $GEMINI_API_KEY\" -H \"Content-Type: application/json\" \\\n  -d '{\"contents\":[{\"parts\":[{\"text\":\"Explain how AI works in a few words\"}]}],\"generationConfig\":{\"maxOutputTokens\":64}}' ",
+    "curl_interactions": "curl -s -X POST \"https://generativelanguage.googleapis.com/v1beta/interactions\" \\\n  -H \"x-goog-api-key: $GEMINI_API_KEY\" -H \"Content-Type: application/json\" \\\n  -d '{\"model\":\"gemini-3.8-flash\",\"input\":\"Explain how AI works in a few words\",\"store\":false}' "
+  }
+}

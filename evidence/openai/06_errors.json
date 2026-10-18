@@ -1,0 +1,59 @@
+{
+  "provider": "openai",
+  "item": "06_errors",
+  "item_ko": "상태 및 오류 확인",
+  "source": "live",
+  "note": "",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:27:49+00:00",
+  "payload": {
+    "health": {
+      "provider": "openai",
+      "ok": true,
+      "status_code": 200,
+      "latency_ms": 1290.4,
+      "checked_via": "GET /v1/models",
+      "error": null,
+      "ratelimit": {
+        "date": "Sun, 18 Oct 2026 16:27:50 GMT",
+        "content-type": "application/json",
+        "openai-processing-ms": "748",
+        "openai-version": "2020-10-01",
+        "x-request-id": "befa448b-8fd8-4cf0-8601-a24b5b180050"
+      },
+      "request_id": "befa448b-8fd8-4cf0-8601-a24b5b180050"
+    },
+    "intentional_errors": {
+      "bad_key": {
+        "category": "AUTH",
+        "status_code": 401,
+        "provider_type": "invalid_request_error",
+        "provider_code": "invalid_api_key",
+        "message": "Incorrect API key provided: INVALID-********TEST. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "retry_after": null,
+        "request_id": "req_8110ab18cccf4d568e4c0e1d6a795f4c",
+        "exception_class": "AuthenticationError"
+      },
+      "bad_model": {
+        "category": "NOT_FOUND",
+        "status_code": 404,
+        "provider_type": "invalid_request_error",
+        "provider_code": "model_not_found",
+        "message": "The model `model-does-not-exist-123` does not exist or you do not have access to it.",
+        "retry_after": null,
+        "request_id": "req_46b17c92218e4aa2a273e4b2ccaa4518",
+        "exception_class": "NotFoundError"
+      },
+      "timeout": {
+        "category": "NETWORK",
+        "status_code": null,
+        "provider_type": null,
+        "provider_code": null,
+        "message": "Connection error.",
+        "retry_after": null,
+        "request_id": null,
+        "exception_class": "APIConnectionError"
+      }
+    }
+  }
+}

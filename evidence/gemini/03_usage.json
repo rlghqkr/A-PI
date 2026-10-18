@@ -1,0 +1,21 @@
+{
+  "provider": "gemini",
+  "item": "03_usage",
+  "item_ko": "Token Usage",
+  "source": "blocked",
+  "note": "no key",
+  "model": "gemini-3.8-flash",
+  "saved_at": "2026-10-18T16:23:37+00:00",
+  "payload": {
+    "error": {
+      "category": "AUTH",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "GEMINI_API_KEY 가 설정되지 않았습니다 (.env 확인). 키 없이 실행 → 이 항목은 [BLOCKED: no key].",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": null
+    }
+  }
+}

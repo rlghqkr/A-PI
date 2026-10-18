@@ -1,0 +1,15 @@
+{
+  "provider": "gemini",
+  "item": "04_usage_api",
+  "item_ko": "Usage 조회",
+  "source": "blocked",
+  "note": "no key",
+  "model": "gemini-3.8-flash",
+  "saved_at": "2026-10-18T16:27:50+00:00",
+  "payload": {
+    "provider": "gemini",
+    "item": "usage_report",
+    "reason": "Gemini API 에는 기간별 Usage 엔드포인트가 없음(AI Studio 대시보드 전용). Admin 키 개념도 없어 어떤 키로도 불가 — 간접 수단은 Google Cloud OAuth(ADC, Project Viewer 이상) 가 필요하며 Auth key 로 보낸 요청은 서비스 계정 usage metrics 에 기록되지 않음",
+    "alternative": "https://aistudio.google.com/usage · Cloud Monitoring 메트릭 generativelanguage.googleapis.com/generate_content_usage_output_token_count(OAuth, BETA) · apicompare.usagelog.aggregate()"
+  }
+}

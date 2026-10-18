@@ -1,0 +1,299 @@
+# A-PI 사전조사 매트릭스 — 작성자 1명 = 파일 1개. 복사해서 matrix/<이름>.yaml 로 저장한 뒤 채운다.
+#   검증: uv run python scripts/validate_matrix.py matrix/<이름>.yaml
+#   enum 값은 matrix/matrix_entry.schema.json 참조. 모르면 unknown 으로 두고 넘어가도 된다.
+author: <slack_handle>
+as_of: "2026-10-19"
+entries:
+  - provider: openai
+    item: models_list                # 모델 목록 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: generate                # 모델 호출
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: token_usage                # Token Usage
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: usage_report                # Usage 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: cost                # 비용 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: status_errors                # 상태 및 오류 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: openai
+    item: example                # 호출 예제
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: models_list                # 모델 목록 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: generate                # 모델 호출
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: token_usage                # Token Usage
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: usage_report                # Usage 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: cost                # 비용 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: status_errors                # 상태 및 오류 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: anthropic
+    item: example                # 호출 예제
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: models_list                # 모델 목록 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: generate                # 모델 호출
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: token_usage                # Token Usage
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: usage_report                # Usage 조회
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: cost                # 비용 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: status_errors                # 상태 및 오류 확인
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5
+
+  - provider: gemini
+    item: example                # 호출 예제
+    availability: unknown       # api | partial | dashboard_only | none | unknown
+    endpoint: ""
+    auth: unknown               # standard_key | admin_key | oauth_cloud | login_only | none | unknown
+    sdk_call: ""
+    response_fields: []
+    common_fields: []
+    caveats: ""
+    evidence: docs              # live | docs | observed | blocked
+    blocked_reason: ""
+    sources: []
+    confidence: 0.5

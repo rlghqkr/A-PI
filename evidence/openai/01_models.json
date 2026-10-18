@@ -1,0 +1,1274 @@
+{
+  "provider": "openai",
+  "item": "01_models",
+  "item_ko": "모델 목록 조회",
+  "source": "live",
+  "note": "",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:27:47+00:00",
+  "payload": {
+    "count": 135,
+    "models": [
+      {
+        "provider": "openai",
+        "id": "babbage-002",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-08-21T16:16:55+00:00",
+        "shutdown_date": "2026-09-28",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "babbage-002",
+          "created": 1692634615,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-09-28"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "chat-latest",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2026-05-02T06:50:02+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "chat-latest",
+          "created": 1777704602,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "chatgpt-image-latest",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-16T22:47:59+00:00",
+        "shutdown_date": "2026-12-01",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "chatgpt-image-latest",
+          "created": 1765925279,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-12-01"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "davinci-002",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-08-21T16:11:41+00:00",
+        "shutdown_date": "2026-09-28",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "davinci-002",
+          "created": 1692634301,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-09-28"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-02-28T18:56:42+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "openai"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo",
+          "created": 1677610602,
+          "object": "model",
+          "owned_by": "openai",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo-0125",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-01-23T22:19:18+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo-0125",
+          "created": 1706048358,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo-1106",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-11-02T21:15:48+00:00",
+        "shutdown_date": "2026-09-28",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo-1106",
+          "created": 1698959748,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-09-28"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo-16k",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-05-10T22:35:02+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "openai-internal"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo-16k",
+          "created": 1683758102,
+          "object": "model",
+          "owned_by": "openai-internal",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo-instruct",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-08-24T18:23:47+00:00",
+        "shutdown_date": "2026-09-28",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo-instruct",
+          "created": 1692901427,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-09-28"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-3.5-turbo-instruct-0914",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-09-07T21:34:32+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-3.5-turbo-instruct-0914",
+          "created": 1694122472,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-06-27T16:13:31+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "openai"
+        },
+        "raw": {
+          "id": "gpt-4",
+          "created": 1687882411,
+          "object": "model",
+          "owned_by": "openai",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4-0613",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2023-06-12T16:54:56+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "openai"
+        },
+        "raw": {
+          "id": "gpt-4-0613",
+          "created": 1686588896,
+          "object": "model",
+          "owned_by": "openai",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4-turbo",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-04-05T23:57:21+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4-turbo",
+          "created": 1712361441,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4-turbo-2024-04-09",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-04-08T18:41:17+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4-turbo-2024-04-09",
+          "created": 1712601677,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T20:22:22+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1",
+          "created": 1744316542,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1-2025-04-14",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T20:09:06+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1-2025-04-14",
+          "created": 1744315746,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1-mini",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T20:49:33+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1-mini",
+          "created": 1744318173,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1-mini-2025-04-14",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T20:39:07+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1-mini-2025-04-14",
+          "created": 1744317547,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1-nano",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T21:48:27+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1-nano",
+          "created": 1744321707,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4.1-nano-2025-04-14",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-04-10T21:37:05+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4.1-nano-2025-04-14",
+          "created": 1744321025,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-05-10T18:50:49+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o",
+          "created": 1715367049,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-2024-05-13",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-05-10T19:08:52+00:00",
+        "shutdown_date": "2026-10-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-2024-05-13",
+          "created": 1715368132,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-10-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-2024-08-06",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-08-04T23:38:39+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-2024-08-06",
+          "created": 1722814719,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-2024-11-20",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-02-12T03:39:03+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-2024-11-20",
+          "created": 1739331543,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-07-16T23:32:21+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini",
+          "created": 1721172741,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-2024-07-18",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2024-07-16T23:31:57+00:00",
+        "shutdown_date": "2027-01-14",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-2024-07-18",
+          "created": 1721172717,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-14"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-search-preview",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-03-07T23:46:01+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-search-preview",
+          "created": 1741391161,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-search-preview-2025-03-11",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-03-07T23:40:58+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-search-preview-2025-03-11",
+          "created": 1741390858,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-transcribe",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-03-15T19:56:36+00:00",
+        "shutdown_date": "2027-02-26",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-transcribe",
+          "created": 1742068596,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-02-26"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-transcribe-2025-03-20",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-13T07:22:25+00:00",
+        "shutdown_date": "2027-01-20",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-transcribe-2025-03-20",
+          "created": 1765610545,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-20"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-transcribe-2025-12-15",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-13T07:20:07+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-transcribe-2025-12-15",
+          "created": 1765610407,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-tts",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-03-19T17:05:59+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-tts",
+          "created": 1742403959,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-tts-2025-03-20",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-13T07:25:31+00:00",
+        "shutdown_date": "2027-01-06",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-tts-2025-03-20",
+          "created": 1765610731,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-06"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-mini-tts-2025-12-15",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-13T07:27:17+00:00",
+        "shutdown_date": "2027-01-06",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-mini-tts-2025-12-15",
+          "created": 1765610837,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-01-06"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-search-preview",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2026-02-24T03:58:54+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-search-preview",
+          "created": 1771905534,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-search-preview-2025-03-11",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2026-02-24T04:00:21+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-search-preview-2025-03-11",
+          "created": 1771905621,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-transcribe",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-03-15T19:54:23+00:00",
+        "shutdown_date": "2027-02-26",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-transcribe",
+          "created": 1742068463,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-02-26"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-4o-transcribe-diarize",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-06-24T21:01:27+00:00",
+        "shutdown_date": "2027-02-26",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": false,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-4o-transcribe-diarize",
+          "created": 1750798887,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-02-26"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-05T20:29:37+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5",
+          "created": 1754425777,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-2025-08-07",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-01T19:09:20+00:00",
+        "shutdown_date": "2026-12-11",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-2025-08-07",
+          "created": 1754075360,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-12-11"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-chat-latest",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-01T18:35:06+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-chat-latest",
+          "created": 1754073306,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-codex",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-09-10T18:10:18+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-codex",
+          "created": 1757527818,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-mini",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-05T20:32:08+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-mini",
+          "created": 1754425928,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-mini-2025-08-07",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-05T20:31:07+00:00",
+        "shutdown_date": "2026-12-11",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-mini-2025-08-07",
+          "created": 1754425867,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-12-11"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-nano",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-05T20:39:44+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-nano",
+          "created": 1754426384,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-nano-2025-08-07",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-08-05T20:38:23+00:00",
+        "shutdown_date": "2026-12-11",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-nano-2025-08-07",
+          "created": 1754426303,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-12-11"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-pro",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-10-03T05:37:02+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-pro",
+          "created": 1759469822,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-pro-2025-10-06",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-10-03T05:35:07+00:00",
+        "shutdown_date": "2026-12-11",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-pro-2025-10-06",
+          "created": 1759469707,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-12-11"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-search-api",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-10-03T18:03:49+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-search-api",
+          "created": 1759514629,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5-search-api-2025-10-14",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-10-09T21:06:00+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5-search-api-2025-10-14",
+          "created": 1760043960,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-10T18:51:13+00:00",
+        "shutdown_date": "2027-04-01",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1",
+          "created": 1762800673,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2027-04-01"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1-2025-11-13",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-10T18:45:53+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1-2025-11-13",
+          "created": 1762800353,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1-chat-latest",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-07T20:39:11+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1-chat-latest",
+          "created": 1762547951,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1-codex",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-12T22:57:01+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1-codex",
+          "created": 1762988221,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1-codex-max",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-20T20:45:32+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1-codex-max",
+          "created": 1763671532,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.1-codex-mini",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-11-13T04:11:49+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.1-codex-mini",
+          "created": 1763007109,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.2",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-09T20:44:11+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.2",
+          "created": 1765313051,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.2-2025-12-11",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-09T20:43:48+00:00",
+        "shutdown_date": null,
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.2-2025-12-11",
+          "created": 1765313028,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": null
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.2-chat-latest",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-10T05:25:52+00:00",
+        "shutdown_date": "2026-08-10",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.2-chat-latest",
+          "created": 1765344352,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-08-10"
+        }
+      },
+      {
+        "provider": "openai",
+        "id": "gpt-5.2-codex",
+        "display_name": null,
+        "context_window": null,
+        "max_output_tokens": null,
+        "created_at": "2025-12-19T17:23:05+00:00",
+        "shutdown_date": "2026-07-23",
+        "lifecycle": null,
+        "capabilities": {
+          "text_model": true,
+          "owned_by": "system"
+        },
+        "raw": {
+          "id": "gpt-5.2-codex",
+          "created": 1766164985,
+          "object": "model",
+          "owned_by": "system",
+          "shutdown_date": "2026-07-23"
+        }
+      }
+    ]
+  }
+}

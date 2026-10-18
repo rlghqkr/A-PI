@@ -1,0 +1,15 @@
+{
+  "provider": "anthropic",
+  "item": "04_usage_api",
+  "item_ko": "Usage 조회",
+  "source": "blocked",
+  "note": "no key",
+  "model": "claude-haiku-5-5",
+  "saved_at": "2026-10-18T16:27:50+00:00",
+  "payload": {
+    "provider": "anthropic",
+    "item": "usage_report",
+    "reason": "ANTHROPIC_ADMIN_KEY 없음 — Usage & Cost Admin API 는 조직(Organization) 계정 + Admin 키 필수, SDK 미지원(raw HTTP)",
+    "alternative": "platform.claude.com/usage 대시보드 또는 usagelog.aggregate()"
+  }
+}

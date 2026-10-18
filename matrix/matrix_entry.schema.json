@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "A-PI 사전조사 매트릭스 (작성자 1명 = 파일 1개, Provider 3 × 항목 7 = 21개 엔트리)",
+  "type": "object",
+  "required": ["author", "as_of", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "author": { "type": "string", "minLength": 1, "description": "Slack 핸들 또는 이름" },
+    "as_of": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "조사 기준일" },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["provider", "item", "availability", "endpoint", "auth", "evidence", "sources"],
+        "additionalProperties": false,
+        "properties": {
+          "provider": { "enum": ["openai", "anthropic", "gemini"] },
+          "item": {
+            "enum": ["models_list", "generate", "token_usage", "usage_report", "cost", "status_errors", "example"],
+            "description": "models_list=모델 목록 조회, generate=모델 호출, token_usage=Token Usage, usage_report=Usage 조회, cost=비용 확인, status_errors=상태 및 오류 확인, example=호출 예제"
+          },
+          "availability": {
+            "enum": ["api", "partial", "dashboard_only", "none", "unknown"],
+            "description": "api=API 로 가능, partial=일부만(예: 로컬 계산+Admin 전용), dashboard_only=대시보드만, none=없음, unknown=모름"
+          },
+          "endpoint": { "type": "string", "description": "예: GET /v1/models. 없으면 '없음(대시보드)'" },
+          "auth": {
+            "enum": ["standard_key", "admin_key", "oauth_cloud", "login_only", "none", "unknown"],
+            "description": "standard_key=일반 API 키, admin_key=Admin/조직 키, oauth_cloud=클라우드 OAuth, login_only=웹 로그인만"
+          },
+          "sdk_call": { "type": "string", "description": "예: client.models.list()" },
+          "response_fields": { "type": "array", "items": { "type": "string" } },
+          "common_fields": { "type": "array", "items": { "type": "string" }, "description": "3사 공통으로 뽑을 수 있다고 보는 필드" },
+          "caveats": { "type": "string" },
+          "evidence": { "enum": ["live", "docs", "observed", "blocked"] },
+          "blocked_reason": { "type": "string", "description": "evidence=blocked 일 때 사유(예: admin key)" },
+          "sources": { "type": "array", "items": { "type": "string" }, "description": "공식 문서 URL" },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

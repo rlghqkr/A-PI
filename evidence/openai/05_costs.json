@@ -1,0 +1,31 @@
+{
+  "provider": "openai",
+  "item": "05_costs",
+  "item_ko": "비용 확인",
+  "source": "live",
+  "note": "",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:18:00+00:00",
+  "payload": {
+    "local_estimate": {
+      "usd": 9e-05,
+      "breakdown": {
+        "input": 1.35e-05,
+        "cached_input": 0.0,
+        "cache_write": 0.0,
+        "output": 7.65e-05
+      },
+      "price_as_of": "2026-10-18",
+      "price_source": "https://developers.openai.com/api/docs/pricing",
+      "model": "gpt-5.4-mini",
+      "effective_from": null,
+      "note": "오늘 실습에 사용한 모델. 종료 미공지"
+    },
+    "cost_report": {
+      "provider": "openai",
+      "item": "cost_report",
+      "reason": "OPENAI_ADMIN_KEY 없음 — GET /v1/organization/costs 는 Admin API 키(조직 Owner 발급) 필수. 표준/프로젝트 키로는 불가",
+      "alternative": "platform.openai.com/usage 대시보드 또는 apicompare.usagelog.aggregate()"
+    }
+  }
+}

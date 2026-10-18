@@ -1,0 +1,13 @@
+{
+  "provider": "gemini",
+  "item": "01_models",
+  "item_ko": "모델 목록 조회",
+  "source": "blocked",
+  "note": "no key",
+  "model": "gemini-3.8-flash",
+  "saved_at": "2026-10-18T16:27:50+00:00",
+  "payload": {
+    "count": 0,
+    "models": []
+  }
+}

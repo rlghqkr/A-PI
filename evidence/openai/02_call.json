@@ -1,0 +1,155 @@
+{
+  "provider": "openai",
+  "item": "02_call",
+  "item_ko": "모델 호출",
+  "source": "live",
+  "note": "",
+  "model": "gpt-5.4-mini",
+  "saved_at": "2026-10-18T16:18:00+00:00",
+  "payload": {
+    "provider": "openai",
+    "model": "gpt-5.4-mini",
+    "api": "responses",
+    "status": "ok",
+    "text": "대한민국의 수도는 **서울특별시**입니다.",
+    "usage": {
+      "input_tokens": 18,
+      "output_tokens": 17,
+      "total_tokens": 35,
+      "cached_input_tokens": 0,
+      "cache_write_tokens": 0,
+      "reasoning_tokens": 0,
+      "total_is_computed": false,
+      "raw": {
+        "input_tokens": 18,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 17,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 35
+      }
+    },
+    "latency_ms": 1679.0,
+    "request_id": "req_338cc123c19e4bbfa1f5d1564ab93339",
+    "finish_reason": "completed",
+    "service_tier": "default",
+    "response_headers": {
+      "date": "Sun, 18 Oct 2026 16:18:02 GMT",
+      "content-type": "application/json",
+      "openai-processing-ms": "1368",
+      "openai-version": "2020-10-01",
+      "x-ratelimit-limit-requests": "10000",
+      "x-ratelimit-limit-tokens": "10000000",
+      "x-ratelimit-remaining-requests": "9999",
+      "x-ratelimit-remaining-tokens": "10000000",
+      "x-ratelimit-reset-requests": "6ms",
+      "x-ratelimit-reset-tokens": "0s",
+      "x-request-id": "req_338cc123c19e4bbfa1f5d1564ab93339"
+    },
+    "error": null,
+    "raw": {
+      "id": "resp_0e65f5df806067da016ad4f1391c0487d088629681f0fa56d2",
+      "access_programs": null,
+      "created_at": 1792340281.0,
+      "error": null,
+      "incomplete_details": null,
+      "instructions": null,
+      "metadata": {},
+      "model": "gpt-5.4-mini-2026-03-17",
+      "object": "response",
+      "output": [
+        {
+          "id": "msg_0e65f5df806067da016ad4f13a26e487d093f76e07698a6443",
+          "content": [
+            {
+              "annotations": [],
+              "text": "대한민국의 수도는 **서울특별시**입니다.",
+              "type": "output_text",
+              "logprobs": []
+            }
+          ],
+          "role": "assistant",
+          "status": "completed",
+          "type": "message",
+          "phase": "final_answer"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "temperature": 1.0,
+      "tool_choice": "auto",
+      "tools": [],
+      "top_p": 0.98,
+      "background": false,
+      "completed_at": 1792340282.0,
+      "conversation": null,
+      "max_output_tokens": 24,
+      "max_tool_calls": null,
+      "moderation": null,
+      "previous_response_id": null,
+      "prompt": null,
+      "prompt_cache_diagnostics": null,
+      "prompt_cache_key": null,
+      "prompt_cache_options": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "current_turn",
+        "effort": "none",
+        "generate_summary": null,
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "status": "completed",
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "top_logprobs": 0,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 18,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 17,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 35
+      },
+      "user": null,
+      "billing": {
+        "payer": "developer"
+      },
+      "frequency_penalty": 0.0,
+      "presence_penalty": 0.0,
+      "store": false,
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+# A-PI 사전조사 매트릭스 — OpenAI 담당(kimbong). 검증된 조사 매트릭스(2026-10-18 교차 검증, CORRECTED 반영)를 요약한다.
+#   검증: uv run python -c "import yaml,json,jsonschema;d=yaml.safe_load(open('matrix/_parts/openai.yaml'));jsonschema.validate(d,json.load(open('matrix/matrix_entry.schema.json')));print(len(d['entries']))"
+#   evidence 규칙: observed = 10/18~19 에 실제 관찰했으나 노트북으로 재현(live) 전 / blocked = Admin 키 없음
+author: kimbong
+as_of: "2026-10-19"
+entries:
+  - provider: openai
+    item: models_list                # 모델 목록 조회
+    availability: api
+    endpoint: "GET /v1/models ; GET /v1/models/{model}"
+    auth: standard_key
+    sdk_call: "for m in client.models.list(): print(m.id, m.owned_by, m.created, m.shutdown_date)"
+    response_fields: ["object", "data[].id", "data[].object", "data[].created", "data[].owned_by", "data[].shutdown_date"]
+    common_fields: ["model_id", "created_at", "shutdown_date", "http_status", "request_id", "latency"]
+    caveats: >-
+      모델 객체는 id/object/created/owned_by/shutdown_date 만 있고 컨텍스트 윈도우·최대 출력·단가·capability 가 전혀 없다(Gemini models.list 는 토큰 한도 포함)
+      → 모델 스펙 테이블은 문서에서 수동 구축해 로컬에 하드코딩해야 한다. 반환 목록(10/18 관찰 135개)에는 TTS·임베딩·이미지 등 비텍스트 모델이 섞여 있어 필터링이 필요하다.
+      CORRECTED: shutdown_date 는 REST 문서뿐 아니라 SDK 3.35.1 types/model.py 의 Model 클래스에도 `shutdown_date: Optional[str] = None` 으로 존재해 m.shutdown_date 로 바로 읽을 수 있다.
+      deprecations 페이지의 종료 일정(gpt-5-mini/nano 2026-12-11, gpt-4o-mini/gpt-4.1 2027-01-14, gpt-5.4-nano 2027-04-01)을 shutdown_date 와 함께 저장해 자동 경고하도록 설계 권장.
+    evidence: observed
+    sources:
+      - https://developers.openai.com/api/reference/resources/models/methods/list
+      - https://developers.openai.com/api/docs/models
+      - https://developers.openai.com/api/docs/models/gpt-5.4-mini
+    confidence: 0.95
+
+  - provider: openai
+    item: generate                # 모델 호출
+    availability: api
+    endpoint: "POST /v1/responses (권장) ; POST /v1/chat/completions (지원 유지, 종료 미공지)"
+    auth: standard_key
+    sdk_call: 'r = client.responses.create(model="gpt-5.4-mini", instructions="You are concise.", input="Say hello in Korean."); print(r.output_text)'
+    response_fields: ["id", "model", "status", "output[].content[].text", "output_text", "usage", "service_tier", "incomplete_details.reason", "choices[0].message.content", "choices[0].finish_reason"]
+    common_fields: ["model_id", "text", "input_tokens", "output_tokens", "finish_reason", "latency", "request_id", "http_status"]
+    caveats: >-
+      두 엔드포인트가 공존하며 입력(input/instructions vs messages)·출력(output_text vs choices[0].message.content)·usage 필드명이 다르다 → 시뮬레이터는 Responses 를 기본으로 채택하고 OpenAI 어댑터만 api 분기를 둔다.
+      GPT-5.4 이후 Chat Completions 는 tools + reasoning_effort≠none 조합을 지원하지 않아 400 invalid_request_error 가 난다(10/18 gpt-5.4-mini 로 관찰). hosted tools(web/file search, code interpreter, MCP)는 Responses 전용, GPT-6 계열 tool calling 은 Responses 필수.
+      uncertain: Chat Completions '무기한 지원' 문구는 현행 문서에 없음 — 공식 문구는 'While Chat Completions remains supported, Responses is recommended for all new projects' 이고 deprecations 페이지에 종료 공지 없음 → '지원 유지, 종료 미공지' 로 기술.
+      store 기본 true(30일 보관) → 비교 실험은 store=False 고려. max_output_tokens 도달 시 status='incomplete' 이며 visible output 없이 reasoning 토큰만 과금될 수 있다. Structured Outputs 는 Responses text.format / Chat response_format 으로 이름이 다르다.
+    evidence: observed
+    sources:
+      - https://developers.openai.com/api/docs/quickstart
+      - https://developers.openai.com/api/reference/resources/responses/methods/create
+      - https://developers.openai.com/api/reference/python/resources/responses/methods/create
+      - https://developers.openai.com/api/reference/python/resources/chat/subresources/completions/methods/create
+    confidence: 0.95
+
+  - provider: openai
+    item: token_usage                # Token Usage
+    availability: api
+    endpoint: "응답 내 usage (POST /v1/responses, POST /v1/chat/completions) ; 사전 카운트 POST /v1/responses/input_tokens"
+    auth: standard_key
+    sdk_call: "u = client.responses.create(model='gpt-5.4-mini', input='hi').usage; print(u.input_tokens, u.output_tokens, u.total_tokens, u.input_tokens_details.cached_tokens, u.output_tokens_details.reasoning_tokens)"
+    response_fields: ["usage.input_tokens", "usage.output_tokens", "usage.total_tokens", "usage.input_tokens_details.cached_tokens", "usage.output_tokens_details.reasoning_tokens", "usage.prompt_tokens", "usage.completion_tokens", "usage.prompt_tokens_details.cached_tokens", "usage.completion_tokens_details.reasoning_tokens"]
+    common_fields: ["input_tokens", "output_tokens", "total_tokens", "cached_input_tokens", "reasoning_tokens"]
+    caveats: >-
+      total_tokens 가 응답에 존재(10/18 total_tokens=150 관찰; Anthropic 은 total 없음). reasoning 토큰은 output_tokens 에 포함되어 output 단가로 과금되므로 비용 계산은 output_tokens 전체를 쓴다(UsageNormalized.output_tokens 규칙과 일치).
+      Responses(input_tokens/output_tokens)와 Chat(prompt_tokens/completion_tokens)의 필드명이 달라 정규화 레이어가 필요하고, Chat 의 details 하위 필드는 SDK 타입상 전부 Optional 이므로 None 방어는 Chat 경로에만 필요하다.
+      CORRECTED: 스트리밍 시 '마지막 chunk 에 usage' 는 Chat 에서 기본 동작이 아니다 — stream_options={"include_usage": True} 를 줘야 [DONE] 직전 추가 chunk 로 usage 가 온다. Responses 스트리밍은 response.completed 이벤트의 response.usage 가 통상 동작이나 가이드에 명시 없음(실측 필요).
+      uncertain: POST /v1/responses/input_tokens 의 과금·rate limit 여부는 문서에 없음. tiktoken 은 평문 추정에만 유효하고(역할·도구 스키마·이미지 미반영) 최신 모델 인코딩 매핑은 미검증 → o200k_base fallback.
+    evidence: observed
+    sources:
+      - https://developers.openai.com/api/docs/guides/reasoning
+      - https://developers.openai.com/api/reference/python/resources/responses/methods/create
+      - https://developers.openai.com/api/reference/python/resources/chat/subresources/completions/methods/create
+      - https://developers.openai.com/api/docs/guides/token-counting
+    confidence: 0.95
+
+  - provider: openai
+    item: usage_report                # Usage 조회
+    availability: api
+    endpoint: "GET /v1/organization/usage/completions (+ embeddings, images, moderations, audio_speeches, audio_transcriptions, vector_stores, code_interpreter_sessions, web_search_calls, file_search_calls, decisions)"
+    auth: admin_key
+    sdk_call: 'admin = OpenAI(admin_api_key=os.environ["OPENAI_ADMIN_KEY"]); page = admin.admin.organization.usage.completions(start_time=int(time.time())-7*86400, bucket_width="1d", group_by=["model"])'
+    response_fields: ["object", "data[].start_time", "data[].end_time", "data[].results[].input_tokens", "data[].results[].output_tokens", "data[].results[].input_cached_tokens", "data[].results[].num_model_requests", "data[].results[].model", "has_more", "next_page"]
+    common_fields: ["bucket_start", "bucket_end", "model_id", "input_tokens", "output_tokens", "request_count"]
+    caveats: >-
+      Admin API 키(조직 Owner 가 Organization settings → Admin keys 에서 생성) 필수. 표준/프로젝트 키로는 불가하며 Admin 키는 일반 엔드포인트에 쓸 수 없다(Administration overview).
+      CORRECTED: '표준 키로 404' 는 커뮤니티 보고이고 서드파티 리포는 403 'Missing scopes: api.usage.read' 를 보고함 → 실제 상태코드는 미확정, 노트북 §4 에서 실측 예정. CLI 레퍼런스에 'Admin endpoints require an admin API key' 문구는 없음(인용 출처 정정).
+      학생 팀이 Owner 가 아니면 Admin 키뿐 아니라 대시보드 Usage 조회 권한(Org owner 프리셋 전용)도 없을 수 있어 시뮬레이터가 호출마다 usage 를 자체 로깅(usagelog)하는 설계가 더 중요하다. 커서 기반 페이지네이션 필수, 1m 버킷은 최대 1440개(24h). 데이터 반영 지연에 대한 공식 서술 없음(실측 과제).
+    evidence: blocked
+    blocked_reason: "no admin key"
+    sources:
+      - https://developers.openai.com/api/reference/typescript/resources/admin/subresources/organization/subresources/usage/methods/completions
+      - https://developers.openai.com/api/reference/python/resources/admin/subresources/organization/subresources/usage/methods/completions
+      - https://developers.openai.com/cookbook/examples/completions_usage_api
+      - https://developers.openai.com/api/reference/cli
+    confidence: 0.9
+
+  - provider: openai
+    item: cost                # 비용 확인
+    availability: partial
+    endpoint: "GET /v1/organization/costs (Admin 키, 1d 버킷) ; 호출별 비용은 API 미제공 → 로컬 계산(usage × 단가)"
+    auth: admin_key
+    sdk_call: 'cost_usd = ((u.input_tokens - u.input_tokens_details.cached_tokens)*0.75 + u.input_tokens_details.cached_tokens*0.075 + u.output_tokens*4.50) / 1e6  # gpt-5.4-mini $/1M'
+    response_fields: ["data[].results[].amount.value", "data[].results[].amount.currency", "data[].results[].line_item", "data[].results[].project_id", "data[].results[].api_key_id", "data[].results[].quantity", "data[].results[].quantity_unit", "has_more", "next_page"]
+    common_fields: ["model_id", "input_tokens", "output_tokens", "cached_input_tokens", "cost_usd", "price_as_of"]
+    caveats: >-
+      Costs API 는 Admin 키 필수라 blocked 이지만 로컬 계산은 가능(availability partial): 단가는 어떤 API 응답에도 없으므로(GET /v1/models 에 price 없음) pricing 페이지 값을 날짜·출처와 함께 로컬 테이블로 유지한다(pricing.PRICE_TABLE, as_of 2026-10-18).
+      공식 공식은 (input − cached)×in + cached×cached_in + output(reasoning 포함)×out, 단위 $/1M. GPT-5.6 이후 모델은 캐시 쓰기 1.25배가 추가되고, 리전 처리 엔드포인트는 10% 가산, service_tier(flex 50%·fast 약 2배·ultrafast 6배)에 따라 같은 모델도 단가가 달라 응답의 service_tier 를 함께 기록해야 한다.
+      Costs API 는 1d 버킷만 지원하고 모델별 group_by 가 없어(line_item 으로 간접 구분) 모델 간 비용 비교는 로컬 계산에 의존. amount.value 는 달러 float 이지만 Spend Limit API 의 threshold_amount 는 센트(int) 라 환산 필요.
+      uncertain: 'Costs 엔드포인트가 인보이스와 정합' 문구는 검색 스니펫만 확인(원문 403). Batch/Flex 50% 는 gpt-5.4 표 값에서 산술적으로 50% 이지만 전 모델 보증 없음 → 모델별 표 값을 그대로 기록.
+    evidence: blocked
+    blocked_reason: "no admin key"
+    sources:
+      - https://developers.openai.com/api/reference/typescript/resources/admin/subresources/organization/subresources/usage/methods/costs
+      - https://developers.openai.com/api/docs/pricing
+      - https://developers.openai.com/api/docs/models/gpt-5.4-mini
+      - https://developers.openai.com/cookbook/examples/completions_usage_api
+    confidence: 0.9
+
+  - provider: openai
+    item: status_errors                # 상태 및 오류 확인
+    availability: api
+    endpoint: "헬스체크 GET /v1/models ; 상태 GET https://status.openai.com/api/v2/status.json, /api/v2/components.json ; 오류는 모든 엔드포인트의 {error:{message,type,code,param}} + HTTP status"
+    auth: standard_key
+    sdk_call: "try: raw = client.responses.with_raw_response.create(model='gpt-5.4-mini', input='ping') except openai.APIStatusError as e: print(e.status_code, e.body)"
+    response_fields: ["error.message", "error.type", "error.code", "error.param", "x-ratelimit-remaining-requests", "x-ratelimit-remaining-tokens", "x-ratelimit-reset-tokens", "retry-after", "x-request-id", "openai-processing-ms"]
+    common_fields: ["http_status", "provider_type", "provider_code", "message", "retry_after", "request_id"]
+    caveats: >-
+      10/18 관찰: 401 code=expired_secret_key(만료된 키), 429 type=insufficient_quota code=credit_balance_exhausted(선불 크레딧 소진). 크레딧 소진·속도 제한(rate_limit_error, slow_down)·지출 한도(*_spend_limit_exceeded)가 모두 429 라서 error.type/code 로 QUOTA_EXHAUSTED / RATE_LIMIT / SPEND_LIMIT 을 구분해야 한다. 503 server_is_overloaded 는 OVERLOADED.
+      SDK 예외는 모두 openai.APIError 상속: APIConnectionError(네트워크)·APITimeoutError(타임아웃)·APIStatusError(.status_code/.body/.request_id) → BadRequestError 400, AuthenticationError 401, PermissionDeniedError 403, NotFoundError 404, RateLimitError 429, InternalServerError ≥500.
+      SDK 기본 timeout 600s·재시도 2회(연결오류·408·409·429·5xx, Retry-After 120s 초과면 재시도 안 함, x-should-retry 헤더 우선) → latency 비교는 timeout 30s·max_retries=0 으로 통일하고 x-stainless-retry-count 로 재시도 여부 검증.
+      CORRECTED: status.openai.com 은 Statuspage API(/api/v2/status.json, /api/v2/components.json, 인증 불필요)를 제공해 프로그래매틱 상태 조회가 가능하다. uncertain: GET /v1/models 헬스체크는 공식 권고가 아니라 합리적 관행(가격표에 요금 없음이 간접 근거).
+      공식 error-codes 페이지에 invalid_api_key·rate_limit_exceeded·model_not_found·expired_secret_key 문자열이 나열돼 있지 않아 노트북 §6 에서 더미 키·잘못된 모델명으로 실측 필요.
+    evidence: observed
+    sources:
+      - https://developers.openai.com/api/docs/guides/error-codes
+      - https://developers.openai.com/api/docs/guides/rate-limits
+      - https://github.com/openai/openai-python
+      - https://status.openai.com/
+    confidence: 0.9
+
+  - provider: openai
+    item: example                # 호출 예제
+    availability: api
+    endpoint: "POST https://api.openai.com/v1/responses"
+    auth: standard_key
+    sdk_call: 'r = OpenAI().responses.create(model="gpt-5.4-mini", input="Write a one-sentence bedtime story about a unicorn."); print(r.output_text, r.usage.input_tokens, r.usage.output_tokens)'
+    response_fields: ["id", "model", "status", "output_text", "usage.input_tokens", "usage.output_tokens", "usage.total_tokens", "service_tier"]
+    common_fields: ["model_id", "text", "input_tokens", "output_tokens", "total_tokens", "latency", "request_id"]
+    caveats: >-
+      10/18 gpt-5.4-mini Responses 호출 성공(관찰). pip install openai 후 OPENAI_API_KEY 환경변수만 있으면 OpenAI() 가 자동으로 읽는다(OPENAI_ADMIN_KEY·OPENAI_ORG_ID·OPENAI_PROJECT_ID 도 자동 인식). 노트북에서는 python-dotenv 로 로드하고 키를 하드코딩하지 않는다.
+      CORRECTED: '저비용 모델로 gpt-5-nano 권장' 은 부적절 — gpt-5-nano/gpt-5-mini 는 2026-12-11, gpt-4o-mini/gpt-4.1 은 2027-01-14, gpt-5.4-nano 는 2027-04-01 종료 예정. 현행 최저가·종료 미공지 모델은 gpt-6-luna($0.10/$0.01/$0.50) 이고 gpt-5.4-mini 는 종료 미공지로 사용 가능하나 models 페이지 메인 목록에는 더 이상 노출되지 않는다.
+      quickstart 예제 모델명은 문서 시점마다 바뀜(현재 gpt-6-astra) → GET /v1/models 실측 결과와 대조해 모델을 고른다.
+    evidence: observed
+    sources:
+      - https://developers.openai.com/api/docs/quickstart
+      - https://github.com/openai/openai-python
+      - https://developers.openai.com/api/reference/python/resources/chat/subresources/completions/methods/create
+    confidence: 0.95
