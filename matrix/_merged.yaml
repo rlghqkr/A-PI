@@ -1,6 +1,6 @@
 # GENERATED FILE — 손편집 금지. scripts/build_comparison.py 가 matrix/<author>.yaml 을 머지해 만든다.
 # 고칠 것이 있으면 자기 matrix/<author>.yaml 을 고치고 `uv run python scripts/build_comparison.py` 를 다시 실행한다.
-generated_at: '2026-10-19T01:43:43+09:00'
+generated_at: '2026-10-19T01:44:15+09:00'
 generated_by: scripts/build_comparison.py
 authors:
 - kimbong

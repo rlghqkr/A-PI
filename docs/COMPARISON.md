@@ -1,6 +1,6 @@
 # OpenAI / Anthropic Claude / Google Gemini API 구조 비교
 
-> **GENERATED 2026-10-19 01:43 KST — 수정은 matrix/*.yaml 로** (`uv run python scripts/build_comparison.py`)
+> **GENERATED 2026-10-19 01:44 KST — 수정은 matrix/*.yaml 로** (`uv run python scripts/build_comparison.py`)
 >
 > 입력: matrix/*.yaml · 작성자 1명: @kimbong · 셀 21/21
 >
@@ -42,7 +42,7 @@
 - **Rate-limit 헤더 10종 + Retry-After 가 매 응답에 포함** → Simulator 가 실시간 잔여 한도를 모니터링·경고할 수 있다(`HEADER_WHITELIST_PREFIXES` 의 `x-ratelimit-`).
 - **SDK 기본 timeout 600s·재시도 2회** → latency 비교에서는 `timeout=30, max_retries=0` 으로 끄고 `x-stainless-retry-count`·`openai-processing-ms` 로 서버 처리 시간을 분리 측정.
 - **사전 토큰 카운팅 엔드포인트 존재**(`POST /v1/responses/input_tokens`; Anthropic count_tokens·Gemini countTokens 와 대응) → 3사 공통 `count_tokens()` 인터페이스 가능. 과금 여부는 미확정.
-- **429 의 의미가 3갈래**(크레딧 소진 / 속도 제한 / 지출 한도) → ErrorCategory 매핑은 HTTP 코드만으로는 불가, `error.type/code` 필수. Anthropic 의 크레딧 소진은 400, Gemini 는 402 라 3사 모두 코드가 다르다.
+- **429 의 의미가 3갈래**(크레딧 소진 / 속도 제한 / 지출 한도) → ErrorCategory 매핑은 HTTP 코드만으로는 불가, `error.type/code` 필수. Anthropic 의 크레딧 소진은 메시지('credit balance is too low')로 판별(상태코드 400/402 미확정), Gemini 는 402 라 3사 모두 코드가 다르다.
 - **선불 결제 최소 $5(기본 $10), 크레딧 1년 만료, 무료 체험 크레딧 미확인**(Gemini 는 무료 티어 존재) → 팀 예산 계획 시 OpenAI 는 충전을 전제로. 문서 도메인도 platform.openai.com → developers.openai.com 으로 이전(301)되어 출처 URL 갱신 필요.
 
 ### Anthropic Claude
