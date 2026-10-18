@@ -25,7 +25,7 @@
 - API 호출 예제 및 기본 연동 정보
 - 모델별 비용 계산 기준정보
 
-수령하면 `docs/` 아래에 정리하고 이 목록에 경로를 적는다. 기업 자료는 PoC 수행 목적으로만 쓰고 외부에 올리지 않는다.
+수령하면 원본은 Drive `A-PI(아피)` 폴더에 두고 이 목록에 파일 이름을 적는다. 기업 자료는 PoC 수행 목적으로만 쓰고 외부에 올리지 않는다. **이 저장소는 Public이므로 기업 자료를 커밋하지 않는다.** 로컬 사본이 필요하면 gitignore된 `docs/company/`에 둔다.
 
 ## 기술 스택
 
@@ -122,6 +122,7 @@ OpenAI, Anthropic Claude, Google Gemini의 API 구조를 조사하고, Provider�
 
 - **Notion**: `A-PI` 페이지 (ID `3faccf3ec2e88031b715dcf5458bb14f`). 정리된 문서(회의록, 조사, 개발일지, 결정)를 둔다.
 - **Google Drive**: `A-PI(아피)` 폴더. 원본 파일(기업 제공 자료, PDF, 이미지, 발표 자료)과 벤치마크 결과 시트를 둔다. 폴더 ID는 A-PI Hermes 프로필의 `SOUL.md`에만 있다(공개 저장소에는 적지 않는다).
+- **GitHub**: https://github.com/rlghqkr/A-PI (**Public**). 링크만 있으면 열리는 Drive 폴더·문서의 ID나 URL은 커밋하지 않는다.
 
 ## 킥오프에서 확인할 것
 
@@ -131,7 +132,7 @@ OpenAI, Anthropic Claude, Google Gemini의 API 구조를 조사하고, Provider�
 - [ ] 기술 스택 지정 여부 (백엔드, 프론트엔드, DB)
 - [ ] 결과물 형태: 웹 화면 필수 여부, 배포 필요 여부
 - [ ] PoC Repository 위치와 접근 권한
-- [ ] 산출물 공개 범위 (포트폴리오, 코드 공개 가능 여부)
+- [ ] 산출물 공개 범위 (포트폴리오, 코드 공개 가능 여부). 현재 GitHub 저장소는 Public이라, 비공개 요구가 있으면 Private으로 바꾼다.
 - [ ] 성공 기준과 최종 발표 형식
 
 ## 저장소 구조 (2026-10-19 기준, 사전조사 단계)
@@ -162,7 +163,7 @@ A-PI/
 │   ├── providers/*.md             # Provider 상세
 │   ├── templates/                 # PROVIDER_TEMPLATE.md, CELL_CARD.md
 │   ├── MERGE_PROCESS.md · KICKOFF_QUESTIONS.md
-│   └── (기업 제공 자료는 킥오프 후 docs/company/ 에)
+│   └── company/                   # 기업 제공 자료 로컬 사본 (gitignored, 공개 저장소라 커밋 금지)
 ├── tests/
 └── data/                          # usage_log.jsonl (gitignored)
 ```

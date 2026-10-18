@@ -22,3 +22,6 @@ runs/
 
 # OS
 .DS_Store
+
+# 기업 제공 자료 (공개 저장소라 커밋 금지, 원본은 Drive A-PI(아피) 폴더)
+docs/company/
