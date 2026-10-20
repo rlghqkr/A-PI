@@ -1,0 +1,14 @@
+models: ['gpt-4-turbo-2024-04-09', 'gpt-realtime-2.1-mini', 'gpt-realtime-2025-08-28', 'omni-moderation-2024-09-26', 'gpt-live-transcribe']
+{
+  "provider": "OpenAI",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "response_text": "편안한 착용감과 깔끔한 음질을 갖춘 무선 블루투스 이어폰으로, 일상과 운동 모두에 잘 어울립니다.  \n빠르고 안정적인 블루투스 연결을 지원해 음악 감상과 통화 시 끊김 없이 편리하",
+  "finish_reason": "completed",
+  "input_tokens": 45,
+  "output_tokens": 100,
+  "reasoning_tokens": 0,
+  "total_tokens": 145,
+  "cost_usd": 0.000484,
+  "latency_ms": 2120,
+  "request_id": "req_6acd917c9b204d6d84d4898a64845cf4"
+}

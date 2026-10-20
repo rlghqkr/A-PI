@@ -1,0 +1,108 @@
+{
+  "status_code": 200,
+  "headers": {
+    "openai-processing-ms": "1805",
+    "x-ratelimit-limit-requests": "10000",
+    "x-ratelimit-limit-tokens": "10000000",
+    "x-ratelimit-remaining-requests": "9999",
+    "x-ratelimit-remaining-tokens": "10000000",
+    "x-ratelimit-reset-requests": "6ms",
+    "x-ratelimit-reset-tokens": "0s",
+    "x-request-id": "req_6acd917c9b204d6d84d4898a64845cf4"
+  },
+  "body": {
+    "id": "resp_0b498348618fc412016ad6bb8b96b887d0809f4ddc27d4d136",
+    "object": "response",
+    "created_at": 1792457611,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1792457613,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": "당신은 쇼핑몰 상품 설명을 작성하는 전문가입니다.",
+    "max_output_tokens": 1024,
+    "max_tool_calls": null,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "moderation": null,
+    "output": [
+      {
+        "id": "msg_0b498348618fc412016ad6bb8cb4fc87d0b6273d3e7812f110",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "편안한 착용감과 깔끔한 음질을 갖춘 무선 블루투스 이어폰으로, 일상과 운동 모두에 잘 어울립니다.  \n빠르고 안정적인 블루투스 연결을 지원해 음악 감상과 통화 시 끊김 없이 편리하게 사용할 수 있습니다.  \n휴대하기 좋은 컴팩트한 디자인과 오래가는 배터리로 언제 어디서나 부담 없이 즐겨보세요."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "none",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 45,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 100,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 145
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

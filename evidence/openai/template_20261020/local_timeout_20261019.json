@@ -1,0 +1,208 @@
+{
+  "note": "로컬 무응답 서버 대상 — OpenAI 서버 미호출, 과금 없음, 더미 키",
+  "sdk": "3.35.1",
+  "T1_read0.5_retries0": {
+    "label": "httpx.Timeout(10.0, read=0.5), max_retries=0",
+    "client_timeout_repr": "Timeout(connect=10.0, read=0.5, write=10.0, pool=10.0)",
+    "client_max_retries": 0,
+    "elapsed_ms": 538.5,
+    "raised": true,
+    "exception_class": "openai.APITimeoutError",
+    "mro": [
+      "openai.APITimeoutError",
+      "openai.APIConnectionError",
+      "openai.APIError",
+      "openai.OpenAIError",
+      "builtins.Exception",
+      "builtins.BaseException",
+      "builtins.object"
+    ],
+    "isinstance": {
+      "APITimeoutError": true,
+      "APIConnectionError": true,
+      "APIError": true,
+      "APIStatusError": false
+    },
+    "str": "Request timed out.",
+    "cause_class": "httpx2.ReadTimeout",
+    "has_status_code_attr": false,
+    "request_x_stainless": {
+      "x-stainless-read-timeout": "0.5",
+      "x-stainless-retry-count": "0"
+    },
+    "error_from_exception": {
+      "category": "TIMEOUT",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "Request timed out.",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": "APITimeoutError"
+    },
+    "server_connections_received": 1,
+    "server_seen": [
+      {
+        "t": 7051183.175,
+        "request_line": "POST /v1/responses HTTP/1.1",
+        "x_stainless": {
+          "x-stainless-lang": "python",
+          "x-stainless-package-version": "3.35.1",
+          "x-stainless-os": "MacOS",
+          "x-stainless-arch": "arm64",
+          "x-stainless-runtime": "CPython",
+          "x-stainless-runtime-version": "3.12.13",
+          "x-stainless-async": "false",
+          "x-stainless-retry-count": "0",
+          "x-stainless-read-timeout": "0.5"
+        }
+      }
+    ]
+  },
+  "T2_openai.Timeout_read0.5_retries0": {
+    "label": "openai.Timeout(10.0, read=0.5) (=httpx2.Timeout), max_retries=0",
+    "client_timeout_repr": "Timeout(connect=10.0, read=0.5, write=10.0, pool=10.0)",
+    "client_max_retries": 0,
+    "elapsed_ms": 504.8,
+    "raised": true,
+    "exception_class": "openai.APITimeoutError",
+    "mro": [
+      "openai.APITimeoutError",
+      "openai.APIConnectionError",
+      "openai.APIError",
+      "openai.OpenAIError",
+      "builtins.Exception",
+      "builtins.BaseException",
+      "builtins.object"
+    ],
+    "isinstance": {
+      "APITimeoutError": true,
+      "APIConnectionError": true,
+      "APIError": true,
+      "APIStatusError": false
+    },
+    "str": "Request timed out.",
+    "cause_class": "httpx2.ReadTimeout",
+    "has_status_code_attr": false,
+    "request_x_stainless": {
+      "x-stainless-read-timeout": "0.5",
+      "x-stainless-retry-count": "0"
+    },
+    "error_from_exception": {
+      "category": "TIMEOUT",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "Request timed out.",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": "APITimeoutError"
+    },
+    "server_connections_received": 1,
+    "server_seen": [
+      {
+        "t": 7051183.99,
+        "request_line": "POST /v1/responses HTTP/1.1",
+        "x_stainless": {
+          "x-stainless-lang": "python",
+          "x-stainless-package-version": "3.35.1",
+          "x-stainless-os": "MacOS",
+          "x-stainless-arch": "arm64",
+          "x-stainless-runtime": "CPython",
+          "x-stainless-runtime-version": "3.12.13",
+          "x-stainless-async": "false",
+          "x-stainless-retry-count": "0",
+          "x-stainless-read-timeout": "0.5"
+        }
+      }
+    ]
+  },
+  "T3_read0.3_default_retries": {
+    "label": "httpx.Timeout(10.0, read=0.3), max_retries 미지정(기본)",
+    "client_timeout_repr": "Timeout(connect=10.0, read=0.3, write=10.0, pool=10.0)",
+    "client_max_retries": 2,
+    "elapsed_ms": 2217.3,
+    "raised": true,
+    "exception_class": "openai.APITimeoutError",
+    "mro": [
+      "openai.APITimeoutError",
+      "openai.APIConnectionError",
+      "openai.APIError",
+      "openai.OpenAIError",
+      "builtins.Exception",
+      "builtins.BaseException",
+      "builtins.object"
+    ],
+    "isinstance": {
+      "APITimeoutError": true,
+      "APIConnectionError": true,
+      "APIError": true,
+      "APIStatusError": false
+    },
+    "str": "Request timed out.",
+    "cause_class": "httpx2.ReadTimeout",
+    "has_status_code_attr": false,
+    "request_x_stainless": {
+      "x-stainless-read-timeout": "0.3",
+      "x-stainless-retry-count": "2"
+    },
+    "error_from_exception": {
+      "category": "TIMEOUT",
+      "status_code": null,
+      "provider_type": null,
+      "provider_code": null,
+      "message": "Request timed out.",
+      "retry_after": null,
+      "request_id": null,
+      "exception_class": "APITimeoutError"
+    },
+    "server_connections_received": 3,
+    "server_seen": [
+      {
+        "t": 7051184.804,
+        "request_line": "POST /v1/responses HTTP/1.1",
+        "x_stainless": {
+          "x-stainless-lang": "python",
+          "x-stainless-package-version": "3.35.1",
+          "x-stainless-os": "MacOS",
+          "x-stainless-arch": "arm64",
+          "x-stainless-runtime": "CPython",
+          "x-stainless-runtime-version": "3.12.13",
+          "x-stainless-async": "false",
+          "x-stainless-retry-count": "0",
+          "x-stainless-read-timeout": "0.3"
+        }
+      },
+      {
+        "t": 7051185.605,
+        "request_line": "POST /v1/responses HTTP/1.1",
+        "x_stainless": {
+          "x-stainless-lang": "python",
+          "x-stainless-package-version": "3.35.1",
+          "x-stainless-os": "MacOS",
+          "x-stainless-arch": "arm64",
+          "x-stainless-runtime": "CPython",
+          "x-stainless-runtime-version": "3.12.13",
+          "x-stainless-async": "false",
+          "x-stainless-retry-count": "1",
+          "x-stainless-read-timeout": "0.3"
+        }
+      },
+      {
+        "t": 7051186.718,
+        "request_line": "POST /v1/responses HTTP/1.1",
+        "x_stainless": {
+          "x-stainless-lang": "python",
+          "x-stainless-package-version": "3.35.1",
+          "x-stainless-os": "MacOS",
+          "x-stainless-arch": "arm64",
+          "x-stainless-runtime": "CPython",
+          "x-stainless-runtime-version": "3.12.13",
+          "x-stainless-async": "false",
+          "x-stainless-retry-count": "2",
+          "x-stainless-read-timeout": "0.3"
+        }
+      }
+    ]
+  }
+}

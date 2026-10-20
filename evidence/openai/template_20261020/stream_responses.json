@@ -1,0 +1,146 @@
+{
+  "status": 200,
+  "headers": {
+    "openai-processing-ms": "1579",
+    "openai-version": "2020-10-01",
+    "x-ratelimit-limit-requests": "10000",
+    "x-ratelimit-limit-tokens": "10000000",
+    "x-ratelimit-remaining-requests": "9999",
+    "x-ratelimit-remaining-tokens": "9999792",
+    "x-ratelimit-reset-requests": "6ms",
+    "x-ratelimit-reset-tokens": "1ms",
+    "x-request-id": "req_26750b5f490d492f884b7c9f09e70141"
+  },
+  "latency_ms": 2470,
+  "ttft_ms": 2059,
+  "event_order_unique": [
+    "response.created",
+    "response.in_progress",
+    "response.output_item.added",
+    "response.content_part.added",
+    "response.output_text.delta",
+    "response.output_text.done",
+    "response.content_part.done",
+    "response.output_item.done",
+    "response.completed"
+  ],
+  "event_counts": {
+    "response.created": 1,
+    "response.in_progress": 1,
+    "response.output_item.added": 1,
+    "response.content_part.added": 1,
+    "response.output_text.delta": 93,
+    "response.output_text.done": 1,
+    "response.content_part.done": 1,
+    "response.output_item.done": 1,
+    "response.completed": 1
+  },
+  "usage_in_completed_event": {
+    "input_tokens": 45,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 101,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 146
+  },
+  "completed_event": {
+    "type": "response.completed",
+    "response": {
+      "id": "resp_0a83c36238aed96e016ad6bb9a3ba087d0ae4bc9844ee15f5f",
+      "object": "response",
+      "created_at": 1792457626,
+      "status": "completed",
+      "access_programs": null,
+      "background": false,
+      "completed_at": 1792457628,
+      "error": null,
+      "frequency_penalty": 0.0,
+      "incomplete_details": null,
+      "instructions": "당신은 쇼핑몰 상품 설명을 작성하는 전문가입니다.",
+      "max_output_tokens": 1024,
+      "max_tool_calls": null,
+      "model": "gpt-5.4-mini-2026-03-17",
+      "moderation": null,
+      "output": [
+        {
+          "id": "msg_0a83c36238aed96e016ad6bb9c072887d0b77f5b265f22a183",
+          "type": "message",
+          "status": "completed",
+          "content": [
+            {
+              "type": "output_text",
+              "annotations": [],
+              "logprobs": [],
+              "text": "가볍고 편안한 착용감으로 하루 종일 부담 없이 사용할 수 있는 무선 블루투스 이어폰입니다.  \n안정적인 블루투스 연결과 선명한 음질로 음악 감상과 통화를 더욱 쾌적하게 즐길 수 있습니다.  \n컴팩트한 충전 케이스를 함께 제공해 휴대와 보관이 간편하며, 언제 어디서나 실용적으로 사용할 수 있습니다."
+            }
+          ],
+          "phase": "final_answer",
+          "role": "assistant"
+        }
+      ],
+      "parallel_tool_calls": true,
+      "presence_penalty": 0.0,
+      "previous_response_id": null,
+      "prompt_cache_key": null,
+      "prompt_cache_retention": "24h",
+      "reasoning": {
+        "context": "current_turn",
+        "effort": "none",
+        "mode": "standard",
+        "summary": null
+      },
+      "safety_identifier": null,
+      "service_tier": "default",
+      "store": false,
+      "temperature": 1.0,
+      "text": {
+        "format": {
+          "type": "text"
+        },
+        "verbosity": "medium"
+      },
+      "tool_choice": "auto",
+      "tool_usage": {
+        "image_gen": {
+          "input_tokens": 0,
+          "input_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "output_tokens": 0,
+          "output_tokens_details": {
+            "image_tokens": 0,
+            "text_tokens": 0
+          },
+          "total_tokens": 0
+        },
+        "web_search": {
+          "num_requests": 0
+        }
+      },
+      "tools": [],
+      "top_logprobs": 0,
+      "top_p": 0.98,
+      "truncation": "disabled",
+      "usage": {
+        "input_tokens": 45,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 101,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 146
+      },
+      "user": null,
+      "metadata": {}
+    },
+    "sequence_number": 100
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "models_list": {
+    "status": 200,
+    "headers": {
+      "openai-processing-ms": "837",
+      "openai-version": "2020-10-01",
+      "x-request-id": "9dcfe40c-b08d-44c9-bd4b-f18e0f44d4cf"
+    },
+    "count": 135,
+    "top_level_keys": [
+      "data",
+      "object"
+    ],
+    "first_item": {
+      "id": "omni-moderation-2024-09-26",
+      "object": "model",
+      "created": 1732734466,
+      "owned_by": "system",
+      "shutdown_date": null
+    }
+  },
+  "models_list_limit2": {
+    "status": 200,
+    "count": 135,
+    "has_more": null
+  },
+  "models_retrieve": {
+    "status": 200,
+    "body": {
+      "id": "gpt-5.4-mini",
+      "object": "model",
+      "created": 1773451123,
+      "owned_by": "system",
+      "shutdown_date": null
+    }
+  },
+  "err_401_bad_key": {
+    "status": 401,
+    "headers": {
+      "openai-processing-ms": "47",
+      "openai-version": "2020-10-01",
+      "x-request-id": "req_54e889f4ed0a40fd8e0453250587b834"
+    },
+    "body": {
+      "error": {
+        "message": "Incorrect API key provided: INVALID-********TEST. You can find your API key at https://platform.openai.com/account/api-keys.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "invalid_api_key"
+      }
+    }
+  },
+  "err_404_bad_model": {
+    "status": 404,
+    "headers": {
+      "openai-processing-ms": "180",
+      "openai-version": "2020-10-01",
+      "x-request-id": "req_669d34594fd64efe8b74bd0109987555"
+    },
+    "body": {
+      "error": {
+        "message": "The model `model-does-not-exist-123` does not exist or you do not have access to it.",
+        "type": "invalid_request_error",
+        "param": null,
+        "code": "model_not_found"
+      }
+    }
+  },
+  "err_400_min_output": {
+    "status": 400,
+    "headers": {
+      "openai-processing-ms": "23",
+      "openai-version": "2020-10-01",
+      "x-request-id": "req_d5e5268fe2ec41d5902b55cb247ee2c0"
+    },
+    "body": {
+      "error": {
+        "message": "Invalid 'max_output_tokens': integer below minimum value. Expected a value >= 16, but got 8 instead.",
+        "type": "invalid_request_error",
+        "param": "max_output_tokens",
+        "code": "integer_below_min_value"
+      }
+    }
+  },
+  "err_403_usage_api": {
+    "status": 403,
+    "headers": {
+      "openai-version": "2020-10-01",
+      "x-request-id": "ac922af5-1dd6-445b-9f0b-136793db6024",
+      "openai-processing-ms": "9"
+    },
+    "body": {
+      "error": "You have insufficient permissions for this operation. Missing scopes: api.usage.read. Check that you have the correct role in your organization, and if you're using a restricted API key, that it has the necessary scopes."
+    }
+  },
+  "err_403_costs_api": {
+    "status": 403,
+    "body": {
+      "error": "You have insufficient permissions for this operation. Missing scopes: api.usage.read. Check that you have the correct role in your organization, and if you're using a restricted API key, that it has the necessary scopes."
+    }
+  },
+  "timeout_0.001s": {
+    "exception": "APIConnectionError",
+    "mro": [
+      "APIConnectionError",
+      "APIError",
+      "OpenAIError",
+      "Exception"
+    ],
+    "msg": "Connection error."
+  },
+  "input_tokens_count": {
+    "status": 200,
+    "headers": {
+      "openai-processing-ms": "91",
+      "openai-version": "2020-10-01",
+      "x-request-id": "req_9edf2d33081f41488c4cd9746de9c600"
+    },
+    "body": {
+      "object": "response.input_tokens",
+      "input_tokens": 45
+    }
+  }
+}

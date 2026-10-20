@@ -1,0 +1,50 @@
+{
+  "status": 200,
+  "headers": {
+    "openai-processing-ms": "1012",
+    "openai-version": "2020-10-01",
+    "x-ratelimit-limit-requests": "10000",
+    "x-ratelimit-limit-tokens": "10000000",
+    "x-ratelimit-remaining-requests": "9999",
+    "x-ratelimit-remaining-tokens": "9999958",
+    "x-ratelimit-reset-requests": "6ms",
+    "x-ratelimit-reset-tokens": "0s",
+    "x-request-id": "req_abbf22b75e0e4154996cd2589097f235"
+  },
+  "latency_ms": 1768,
+  "body": {
+    "id": "chatcmpl-EasOrIvCxi40IfTtzHFQ7uFVGagMZ",
+    "object": "chat.completion",
+    "created": 1792457629,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "세련된 디자인과 편안한 착용감으로 일상 속 어디서나 부담 없이 사용할 수 있는 무선 블루투스 이어폰입니다.  \n선명한 음질과 안정적인 무선 연결로 음악 감상, 통화, 영상 시청까지 더욱 몰입감 있게 즐길 수 있습니다.  \n오래가는 배터리와 간편한 충전으로 하루 종일 끊김 없이 사용할 수 있어 실용성과 만족도를 높여줍니다.",
+          "refusal": null,
+          "annotations": []
+        },
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 45,
+      "completion_tokens": 105,
+      "total_tokens": 150,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "service_tier": "default",
+    "system_fingerprint": null
+  }
+}
